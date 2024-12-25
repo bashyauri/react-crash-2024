@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import PropTypes from "prop-types";
 
-const AddJobPage = () => {
+const AddJobPage = ({ addJobSubmit }) => {
+  AddJobPage.propTypes = {
+    addJobSubmit: PropTypes.func.isRequired,
+  };
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Full-Time");
   const [location, setLocation] = useState("");
@@ -11,6 +16,7 @@ const AddJobPage = () => {
   const [companyDescription, setCompanyDescription] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
+  const navigate = useNavigate();
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -27,7 +33,8 @@ const AddJobPage = () => {
         phone: contactPhone,
       },
     };
-    console.log(newJob);
+    addJobSubmit(newJob);
+    return navigate("/jobs");
   };
   return (
     <section className="bg-indigo-50">

@@ -50,7 +50,7 @@ function JobListing({ job }) {
 }
 
 JobListing.propTypes = {
-  job: PropTypes.string.isRequired,
+  job: PropTypes.object.isRequired,
 };
 
 export default JobListing;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
 const AddJobPage = ({ addJobSubmit }) => {
@@ -34,6 +35,7 @@ const AddJobPage = ({ addJobSubmit }) => {
       },
     };
     addJobSubmit(newJob);
+    toast.success("Job added successfully");
     return navigate("/jobs");
   };
   return (

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { useParams, useLoaderData, useNavigate } from "react-router";
 import { Link } from "react-router";
+import toast from "react-hot-toast";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 
 const JobPage = ({ deleteJob }) => {
@@ -16,6 +17,7 @@ const JobPage = ({ deleteJob }) => {
     );
     if (!confirm) return;
     deleteJob(jobId);
+    toast.success("Job deleted successfully");
     navigate("/jobs");
   };
 
@@ -72,13 +74,13 @@ const JobPage = ({ deleteJob }) => {
                 <h3 className="text-xl">Contact Email:</h3>
 
                 <p className="my-2 bg-indigo-100 p-2 font-bold">
-                  {job.company.contactEmail}
+                  {job.company.email}
                 </p>
 
                 <h3 className="text-xl">Contact Phone:</h3>
 
                 <p className="my-2 bg-indigo-100 p-2 font-bold">
-                  {job.company.contactPhone}
+                  {job.company.phone}
                 </p>
               </div>
 
@@ -112,6 +114,7 @@ const jobLoader = async ({ params }) => {
   const apiUrl = `/api/jobs/${params.id}`;
   const res = await fetch(apiUrl);
   const data = await res.json();
+
   return data;
 };
 
